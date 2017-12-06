@@ -1,0 +1,8 @@
+#!/system/bin/sh
+PORT=3445
+HOST="localhost"
+
+#just for testing now
+./app/app $PORT &
+./app/app $HOST $PORT
+#position in bin folder

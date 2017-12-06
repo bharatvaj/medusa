@@ -1,0 +1,12 @@
+#!/system/bin/sh
+PORT=3445
+HOST="localhost"
+if [ -f rat/ ]; then
+	cd rat/ 
+   git pull -f 
+   cd ..
+else
+	git clone --recursive git@github.com:bharatph/rat && mkdir -p rat/build
+fi
+cd rat/build && cmake -DENABLE_CLOG=true .. && make
+

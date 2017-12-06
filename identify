@@ -1,0 +1,7 @@
+#!/system/bin/sh
+echo "Identifyin build type"
+
+# Search for file types
+
+echo "DEBUG: Identified CMake build system"
+ 
