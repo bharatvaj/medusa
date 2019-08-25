@@ -1,0 +1,35 @@
+#!/bin/bash
+
+INSTALL_DIR="~/dist"
+
+function clone_and_install(){
+    if [ $# -lt 2 ]; then
+      echo "Fatal error"
+      return
+    fi
+    git clone https://$1/$2
+    mkdir -p $2/build
+    cd $2/build
+    if [ $# -gt 2 ]; then
+      git checkout $3
+    fi
+    cmake -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR ..
+    make
+    make install
+    cd ../../
+}
+
+clone_and_install github.com/graeme-hill crossguid b151b7d1aeb68c4b9e98a8a2e0a547885aa0b60c
+
+projects="
+    clog
+    crosssocket
+    libcomm
+    EventManager
+    dot
+    shell4cpp
+"
+
+for val in $projects; do
+  clone_and_install github.com/bharatvaj $val
+done
