@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+prefixdir=${1}
+
+__medusa_err() {
+  echo "ERROR: ${1}"
+}
+
+if [ $? -ne 1 ]; then
+    echo 'Usage: medusa <prefixdir>'
+    exit 1
+fi
+
+if [ -d "${prefixdir}" ]; then
+    __medusa_err 'Given prefixdir is not valid'
+    exit 1
+fi
